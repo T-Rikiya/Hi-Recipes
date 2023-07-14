@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
-  
-  namespace :public do
+
+
+
+  scope module: 'public' do
     root 'homes#top'
     get 'homes/about'
     resources :recipes
