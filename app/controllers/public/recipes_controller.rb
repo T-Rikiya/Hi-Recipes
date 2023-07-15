@@ -6,10 +6,12 @@ class Public::RecipesController < ApplicationController
 
   def index
     @recipes = Recipe.all
+
   end
 
   def show
     @recipe = Recipe.find(params[:id])
+    @comment = Comment.new
   end
 
   def edit
@@ -29,7 +31,7 @@ class Public::RecipesController < ApplicationController
 
   private
   def recipe_params
-    params.require(:recipe).permit(:title, :body, :instruction, :ingredient, :image)
+    params.permit(:title, :body, :instruction, :ingredient, :image, :comment)
   end
 
 end

@@ -6,7 +6,8 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <script src="https://kit.fontawesome.com/dd78c21fb3.js" crossorigin="anonymous"></script>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
@@ -21,7 +22,7 @@
 </div>
       <% if user_signed_in? %>
         <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
-        <li><%= link_to "マイページ" %></li>
+        <li><%= link_to "マイページ" , user_path(current_user.id)%></li>
         <li><%= link_to "みんなのレシピ", recipes_path %></li>
         <li><%= link_to "ユーザー", users_path %></li>
         <li><%= link_to "新規投稿", new_recipe_path %></li>

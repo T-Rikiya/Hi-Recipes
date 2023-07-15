@@ -1,9 +1,19 @@
 <div class="container">
+  <h1>みんなのレシピ</h1>
   <div class="row">
-    <div class="col">
-      
-    </div>
+    <% @recipes.each do |recipe| %>
+      <table class="table">
+        <tr>
+          <td>
+            <%= link_to recipe_path(recipe.id) do %>
+              <%= image_tag recipe.image, size: "100x100" %>
+            <% end %>
+          </td>
+          <td><%= recipe.title %></td>
+          <td><%= recipe.body %></td>
+        </tr>
+      </table>
+    <% end %>
   </div>
 </div>
-<h1>Public::Recipes#index</h1>
-<p>Find me in app/views/public/recipes/index.html.erb</p>
+

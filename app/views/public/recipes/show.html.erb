@@ -1,8 +1,37 @@
-<h1>レシピ詳細</h1>
 <div class="container">
+  <h1>レシピ詳細</h1>
   <div class="row">
     <div class="col">
-      
+      <table class="table">
+        <h1><%= @recipe.title %></h1>
+        <tr>
+          <td><%= image_tag @recipe.image, size: "200x200" %></td>
+          <td><%= @recipe.body %></td>
+        </tr>
+      </table>
     </div>
   </div>
+
+  <div class="row">
+    <div class="col">
+      <h2>材料</h2>
+      <%= @recipe.ingredient %>
+    </div>
+  </div>
+
+  <div class="row">
+    <p>コメント件数：<%= @recipe.comments.count %></p>
+    <% @recipe.comments.each do |comment| %>
+      <%= comment.user.name %>
+      <%= comment.created_at.strftime('%Y/%m/%d') %><%= comment.comment %>
+    <% end %>
+  </div>
+
+  <div class="row">
+    <%= form_with model: [@recipe, @comment] do |f| %>
+      <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
+      <%= f.submit "送信する" %>
+    <% end %>
+  </div>
+
 </div>
