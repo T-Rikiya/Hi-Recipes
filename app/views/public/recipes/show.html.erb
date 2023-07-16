@@ -24,6 +24,25 @@
     <% @recipe.recipe_comments.each do |recipe_comment| %>
       <%= recipe_comment.user.name %>
       <%= recipe_comment.created_at.strftime('%Y/%m/%d') %><%= recipe_comment.comment %>
+      
+      <% if recipe_comment.user == current_user %>
+        <%= link_to "削除", recipe_recipe_comment_path(recipe_comment.recipe, recipe_comment), method: :delete %>
+      <% end %>
+      
+      <% if @recipe.favorited_by?(current_user) %>
+        <p>
+          <%= link_to recipe_favorites_path(@recipe), method: :delete do %>
+            ♥<%= @recipe.favorites.count %> いいね
+          <% end %>
+        </p>
+        <% else %>
+        <p>
+          <%= link_to recipe_favorites_path(@recipe), method: :post do %>
+            ♡<%= @recipe.favorites.count %> いいね
+          <% end %>
+        </p>
+      <% end %>
+      
     <% end %>
   </div>
 

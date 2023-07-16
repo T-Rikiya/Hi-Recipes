@@ -16,9 +16,9 @@ Rails.application.routes.draw do
   scope module: 'public' do
     root 'homes#top'
     get 'homes/about'
-    get 'favorites/index'
     resources :recipes do
-      resources :recipe_comments, only: [:create]
+      resource :favorites, only: [:index, :create, :destroy]
+      resources :recipe_comments, only: [:create, :destroy]
     end
     resources :users
   end

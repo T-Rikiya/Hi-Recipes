@@ -3,7 +3,8 @@ class Public::UsersController < ApplicationController
   end
 
   def show
-   
+   @favorites = Favorite.all
+
   end
 
   def edit
