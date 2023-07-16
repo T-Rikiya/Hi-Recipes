@@ -1,4 +1,4 @@
-class Public::CommentsController < ApplicationController
+class Public::RecipeCommentsController < ApplicationController
 
   def create
     recipe = Recipe.find(params[:recipe_id])

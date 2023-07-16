@@ -18,7 +18,7 @@ Rails.application.routes.draw do
     get 'homes/about'
     get 'favorites/index'
     resources :recipes do
-      resources :comments, only: [:create]
+      resources :recipe_comments, only: [:create]
     end
     resources :users
   end
