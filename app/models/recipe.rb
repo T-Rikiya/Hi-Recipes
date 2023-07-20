@@ -9,4 +9,18 @@ class Recipe < ApplicationRecord
     favorites.exists?(user_id: user.id)
   end
   
+  def self.looks(search, word)
+    if search == "perfect_match"
+      @recipe = Recipe.where("title LIKE?","#{word}")
+    elsif search == "forward_match"
+      @recipe = Recipe.where("title LIKE?","#{word}%")
+    elsif search == "backward_match"
+      @recipe = Recipe.where("title LIKE?","%#{word}")
+    elsif search == "partial_match"
+      @recipe = Recipe.where("title LIKE?","%#{word}%")
+    else
+      @recipe = Re.all
+    end
+  end
+  
 end

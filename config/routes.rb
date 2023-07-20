@@ -21,6 +21,8 @@ Rails.application.routes.draw do
       resources :recipe_comments, only: [:create, :destroy]
     end
     resources :users
+    get '/search', to: 'searches#search'
+  
   end
 
 
