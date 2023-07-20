@@ -27,6 +27,8 @@ class Public::RecipesController < ApplicationController
       render 'index'
     end
   end
+  
+
 
 
   private
