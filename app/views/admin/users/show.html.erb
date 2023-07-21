@@ -4,6 +4,10 @@
     <div class="col">
       <table class="table">
         <tr>
+          <th>ユーザーID</th>
+          <td><%= @user.id %></td>
+        </tr>        
+        <tr>
           <th>ユーザー名</th>
           <td><%= @user.name %></td>
         </tr>
@@ -11,16 +15,17 @@
           <th>メールアドレス</th>
           <td><%= @user.email %></td>
         </tr>
+        <tr>
+          <th></th>
+          <td></td>
+          <td></td>
+        </tr>
       </table>
     </div>
   </div>
-  <div class="row">
-    <div class="col">
-      <table class="table">
-        <% @favorites.each do |favorite| %>
-           
-        <% end %>      
-      </table>
+  <div class="row mb-2">
+    <div class="col-lg-6 px-sm-0 offset-sm-1">
+      <%= link_to "編集する", edit_admin_user_path(@user.id), class:"btn btn-success my-1 mx-4 px-4" %>
     </div>
   </div>
 </div>
