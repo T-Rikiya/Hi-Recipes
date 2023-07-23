@@ -17,7 +17,7 @@ class Recipe < ApplicationRecord
     elsif search == "backward_match"
       @recipe = Recipe.where("title LIKE?","%#{word}")
     elsif search == "partial_match"
-      @recipe = Recipe.where("title LIKE?","%#{word}%")
+      @recipe = Recipe.where("title LIKE(?) OR ingredient LIKE(?)","%#{word}%","%#{word}%")
     else
       @recipe = Recipe.all
     end

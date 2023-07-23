@@ -6,8 +6,9 @@ Rails.application.routes.draw do
   }
 
   namespace :admin do
-    resources :users, only: [:index, :show, :update, :destroy, :edit]
-    resources :recipe_comments, only: [:destroy]
+    resources :users, only: [:index, :show, :update, :destroy, :edit] do
+      resources :recipe_comments, only: [:destroy]
+    end
   end
   
   # ゲストログイン用

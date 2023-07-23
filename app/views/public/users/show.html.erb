@@ -25,14 +25,23 @@
     <h2>いいね一覧</h2>
     <div class="col">
       <table class="table">
-        <% @recipe.favorites.each do |favorite| %>
+        <theader>
           <tr>
-            <td></td>
+            <th>title</th>
+            <th>body</th>
+          </tr>
+        </theader>
+        <tbody>
+        <% @favorite_recipe.each do |recipe| %>
+          <tr>
+            <td><%= recipe.title %></td>
+            <td><%= recipe.body %></td>
           </tr>
         <% end %>
+        </tbody>
       </table>
     </div>
   </div>
-  
-  
+
+
 
