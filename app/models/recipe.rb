@@ -3,12 +3,12 @@ class Recipe < ApplicationRecord
   belongs_to :user
   has_many :recipe_comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
-  
-  
+
+
   def favorited_by?(user)
     favorites.exists?(user_id: user.id)
   end
-  
+
   def self.looks(search, word)
     if search == "perfect_match"
       @recipe = Recipe.where("title LIKE?","#{word}")
@@ -19,8 +19,8 @@ class Recipe < ApplicationRecord
     elsif search == "partial_match"
       @recipe = Recipe.where("title LIKE?","%#{word}%")
     else
-      @recipe = Re.all
+      @recipe = Recipe.all
     end
   end
-  
+
 end

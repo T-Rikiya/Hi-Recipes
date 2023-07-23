@@ -1,4 +1,7 @@
 class Public::UsersController < ApplicationController
+  
+ before_action :ensure_guest_user, only: [:edit] 
+
   def index
     @users = User.all
   end
@@ -6,12 +9,31 @@ class Public::UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @favorites = Favorite.where(user_id: @user.id).all
-
+    @recipe = Recipe.find(params[:id])
   end
 
   def edit
-    @user = User.find(params[:id])
+    @user = current_user
   end
   
+  def update
+   @user = User.find(params[:id])
+    @user.update(user_params)
+    flash[:notice] = "会員情報を変更しました。"
+    redirect_to user_path
+  end
+  
+  
+  private
+  
+  def user_params
+    params.require(:user).permit(:name, :email)
+  end
+  
+  def ensure_guest_user
+    if current_user.guest_user?
+      redirect_to user_path(current_user), notice: "ゲストユーザーはプロフィール編集できません。"
+    end
+  end
   
 end
