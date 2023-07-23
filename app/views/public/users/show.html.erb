@@ -16,7 +16,7 @@
   </div>
   <div class="row mb-2">
     <div class="col-lg-6 px-sm-0 offset-sm-1">
-      <% unless current_member.guest_member? %>
+      <% unless current_user.guest_user? %>
         <%= link_to "編集する", edit_user_path(@user.id), class:"btn btn-success my-1 mx-4 px-4" %>
       <% end %>
     </div>
