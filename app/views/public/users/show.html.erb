@@ -14,14 +14,25 @@
       </table>
     </div>
   </div>
+  <div class="row mb-2">
+    <div class="col-lg-6 px-sm-0 offset-sm-1">
+      <% unless current_member.guest_member? %>
+        <%= link_to "編集する", edit_user_path(@user.id), class:"btn btn-success my-1 mx-4 px-4" %>
+      <% end %>
+    </div>
+  </div>
   <div class="row">
+    <h2>いいね一覧</h2>
     <div class="col">
       <table class="table">
-        <% @favorites.each do |favorite| %>
-           
-        <% end %>      
+        <% @recipe.favorites.each do |favorite| %>
+          <tr>
+            <td></td>
+          </tr>
+        <% end %>
       </table>
     </div>
   </div>
-</div>
+  
+  
 
