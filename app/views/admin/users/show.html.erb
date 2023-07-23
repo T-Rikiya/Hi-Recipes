@@ -6,7 +6,7 @@
         <tr>
           <th>ユーザーID</th>
           <td><%= @user.id %></td>
-        </tr>        
+        </tr>
         <tr>
           <th>ユーザー名</th>
           <td><%= @user.name %></td>
@@ -17,7 +17,7 @@
         </tr>
         <tr>
           <th>会員ステータス</th>
-          <td>              
+          <td>
             <% if @user.is_active == true %>
               <p class="text-success font-weight-bold">有効</p>
             <% else %>
@@ -40,10 +40,10 @@
         <tr>
           <th>コメント内容</th>
         </tr>
-        <% @recipe.recipe_comments.each do |recipe_comment| %>
+        <% @recipe_comments.each do |recipe_comment| %>
           <tr>
             <td><%= recipe_comment.comment %></td>
-            <td><%= link_to "削除", admin_recipe_comment_path(recipe_comment.recipe, recipe_comment), method: :delete %></td>
+            <td><%= link_to "削除", admin_user_recipe_comment_path(@user, recipe_comment), method: :delete %></td>
           </tr>
         <% end %>
       </table>
