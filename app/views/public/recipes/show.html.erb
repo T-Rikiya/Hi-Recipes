@@ -20,7 +20,13 @@
         <p>コメント件数：<%= @recipe.recipe_comments.count %></p>
 
         <tr>
-          <td><%= image_tag @recipe.image, size: "200x200" %></td>
+          <td>
+            <% if @recipe.image.attached? %>
+              <%= image_tag @recipe.image, size: "200x200" %>
+            <% else %>
+              <%= image_tag 'no_image', size: "200x200" %>
+            <% end %>
+          </td>
           <td><%= @recipe.body %></td>
         </tr>
       </table>
