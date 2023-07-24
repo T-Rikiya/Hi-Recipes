@@ -8,6 +8,7 @@ class Public::SessionsController < Devise::SessionsController
     sign_in user
     redirect_to root_path, notice: "Guestでログインしました。"
   end
+  
   # before_action :configure_sign_in_params, only: [:create]
 
   # GET /resource/sign_in
@@ -37,7 +38,7 @@ class Public::SessionsController < Devise::SessionsController
   end
 
   def after_sign_out_path_for(resource)
-    root_path
+    new_user_session_path
   end
   
   protected

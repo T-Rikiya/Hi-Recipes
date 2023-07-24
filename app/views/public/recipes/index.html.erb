@@ -10,8 +10,14 @@
       <table class="table">
         <tr>
           <td>
-            <%= link_to recipe_path(recipe.id) do %>
-              <%= image_tag recipe.image, size: "100x100" %>
+            <% if recipe.image.attached? %>
+              <%= link_to recipe_path(recipe.id) do %>
+                <%= image_tag recipe.image, size: "100x100" %>
+              <% end %>
+            <% else %>
+              <%= link_to recipe_path(recipe.id) do %>
+                <%= image_tag 'no_image', size: "100x100" %>
+              <% end %>
             <% end %>
           </td>
           <td><%= recipe.title %></td>
