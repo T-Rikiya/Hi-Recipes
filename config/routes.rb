@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     resources :users, only: [:index, :show, :update, :destroy, :edit] do
       resources :recipe_comments, only: [:destroy]
     end
+    get '/search', to: 'searches#search'
   end
 
   # ゲストログイン用
