@@ -1,5 +1,9 @@
 class Public::FavoritesController < ApplicationController
 
+  def favorite
+
+  end
+
   def create
     recipe = Recipe.find(params[:recipe_id])
     favorite = current_user.favorites.new(recipe_id: recipe.id)
