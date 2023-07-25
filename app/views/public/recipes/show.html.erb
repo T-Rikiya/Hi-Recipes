@@ -1,0 +1,64 @@
+<div class="container">
+  <h1>レシピ詳細</h1>
+  <div class="row">
+    <div class="col">
+      <table class="table">
+        <h1><%= @recipe.title %></h1>
+        <% if user_signed_in? %>
+          <% if @recipe.favorited_by?(current_user) %>
+            <p>
+              <%= link_to recipe_favorites_path(@recipe), method: :delete do %>
+                ♥<%= @recipe.favorites.count %>
+              <% end %>
+            </p>
+          <% else %>
+            <p>
+              <%= link_to recipe_favorites_path(@recipe), method: :post do %>
+                ♡<%= @recipe.favorites.count %>
+              <% end %>
+            </p>
+          <% end %>
+        <% else %>
+            <p>♥<%= @recipe.favorites.count %></p>
+        <% end %>
+        <p>コメント件数：<%= @recipe.recipe_comments.count %></p>
+        <tr>
+          <td>
+            <% if @recipe.image.attached? %>
+              <%= image_tag @recipe.image, size: "200x200" %>
+            <% else %>
+              <%= image_tag 'no_image', size: "200x200" %>
+            <% end %>
+          </td>
+          <td><%= @recipe.body %></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <h2>材料</h2>
+      <%= @recipe.ingredient %>
+    </div>
+  </div>
+  <h2>みんなのコメント</h2>
+  <div class="row">
+    <% @recipe.recipe_comments.each do |recipe_comment| %>
+      <%= recipe_comment.user.name %>
+      <%= recipe_comment.created_at.strftime('%Y/%m/%d') %><%= recipe_comment.comment %>
+
+      <% if recipe_comment.user == current_user %>
+        <%= link_to "削除", recipe_recipe_comment_path(recipe_comment.recipe, recipe_comment), method: :delete %>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div class="row">
+    <%= form_with model: [@recipe, @comment] do |f| %>
+      <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
+      <%= f.submit "送信する" %>
+    <% end %>
+  </div>
+
+</div>

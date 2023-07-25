@@ -1,0 +1,19 @@
+<div class="container">
+  <div class="row">
+    <h1>ユーザー一覧</h1>
+    <div class="col">
+      <table class="table">
+        <tr>
+          <th>ユーザーネーム</th>
+          <th>メールアドレス</th>
+        </tr>
+        <% @users.each do |user| %>
+          <tr>
+            <td><%= user.name %></td>
+            <td><%= user.email %></td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,82 @@
+<div class="container">
+  <h1><%=@user.name %>さんのユーザー情報</h1>
+  <div class="row">
+    <div class="col">
+      <table class="table">
+        <tr>
+          <th>ユーザー名</th>
+          <td><%= @user.name %></td>
+        </tr>
+        <tr>
+          <th>メールアドレス</th>
+          <td><%= @user.email %></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  
+  <div class="row mb-2">
+    <div class="col-lg-6 px-sm-0 offset-sm-1">
+      <% unless current_user.guest_user? %>
+        <%= link_to "編集する", edit_user_path(@user.id), class:"btn btn-success my-1 mx-4 px-4" %>
+      <% end %>
+    </div>
+  </div>
+  
+  <div class="row">
+    <h2>投稿レシピ</h2>
+    <div class="col">
+      <table class="table">
+        <theader>
+          <tr>
+            <th>画像</th>
+            <th>title</th>
+          </tr>
+        </theader>
+        <tbody>
+        <% @recipe.each do |recipe| %>
+          <tr>
+            <td>
+              <% if recipe.image.attached? %>
+                <%= image_tag recipe.image, size: "200x200" %>
+              <% else %>
+                <%= image_tag 'no_image', size: "200x200" %>
+              <% end %>
+            </td>
+            <td><%= recipe.title %></td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  
+  <div class="row">
+    <h2>お気に入りレシピ</h2>
+    <div class="col">
+      <table class="table">
+        <theader>
+          <tr>
+            <th>画像</th>
+            <th>title</th>
+          </tr>
+        </theader>
+        <tbody>
+        <% @favorite_recipe.each do |recipe| %>
+          <tr>
+            <td>
+              <% if recipe.image.attached? %>
+                <%= image_tag recipe.image, size: "200x200" %>
+              <% else %>
+                <%= image_tag 'no_image', size: "200x200" %>
+              <% end %>
+            </td>
+            <td><%= recipe.title %></td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+
