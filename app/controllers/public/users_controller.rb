@@ -8,6 +8,7 @@ class Public::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @recipe = @user.recipes
     user_favorites_recipe_ids = @user.favorites.pluck(:recipe_id)
     @favorite_recipe = Recipe.find(user_favorites_recipe_ids)
   end

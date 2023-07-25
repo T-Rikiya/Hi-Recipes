@@ -10,7 +10,7 @@ Rails.application.routes.draw do
       resources :recipe_comments, only: [:destroy]
     end
   end
-  
+
   # ゲストログイン用
   devise_scope :user do
     post "users/guest_sign_in", to: "public/sessions#guest_sign_in"
@@ -27,7 +27,7 @@ Rails.application.routes.draw do
     root 'homes#top'
     get 'homes/about'
     resources :recipes do
-      resource :favorites, only: [:index, :create, :destroy]
+      resource :favorites, only: [:create, :destroy]
       resources :recipe_comments, only: [:create, :destroy]
     end
     resources :users do

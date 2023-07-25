@@ -1,0 +1,26 @@
+<div class="container">
+  <h1>いいね一覧</h1>
+  <div class="row">
+    <div class="col">
+      <table class="table">
+        <theader>
+          <tr>
+            <th>title</th>
+            <th>body</th>
+          </tr>
+        </theader>
+        <tbody>
+        <% @favorite_recipe.each do |recipe| %>
+          <tr>
+            <td><%= recipe.title %></td>
+            <td><%= recipe.body %></td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+
