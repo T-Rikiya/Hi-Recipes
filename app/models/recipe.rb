@@ -14,17 +14,7 @@ class Recipe < ApplicationRecord
   end
 
   def self.looks(search, word)
-    if search == "perfect_match"
-      @recipe = Recipe.where("title LIKE?","#{word}")
-    elsif search == "forward_match"
-      @recipe = Recipe.where("title LIKE?","#{word}%")
-    elsif search == "backward_match"
-      @recipe = Recipe.where("title LIKE?","%#{word}")
-    elsif search == "partial_match"
-      @recipe = Recipe.where("title LIKE(?) OR ingredient LIKE(?)","%#{word}%","%#{word}%")
-    else
-      @recipe = Recipe.all
-    end
+    @recipe = Recipe.where("title LIKE(?) OR ingredient LIKE(?)","%#{word}%","%#{word}%")
   end
 
 end

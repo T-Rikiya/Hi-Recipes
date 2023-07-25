@@ -2,36 +2,24 @@
   <div class="row">
     <div class="col">
       <table class="table table-hover table-inverse">
-        <!--Userを検索した時 -->
-        <% if @range == "User" %>
-          <h3> 検索ワード "<%= @word %>"</h3>
-          <tbody>
-            <% @users.each do |user| %>
-              <tr>
-                <td><%= user.name %></td>
-              </tr>
-            <% end %>
-          </tbody>
-        <% else %>
-          <!--Recipeを検索した時 -->
-          <h3> 検索ワード "<%= @word %>"</h3>
-          <thead>
+        <!--Recipeを検索した時 -->
+        <h3> 検索ワード "<%= @word %>"</h3>
+        <thead>
+          <tr>
+            <th></th>
+            <th>タイトル</th>
+            <th>概要</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @recipes.each do |recipe| %>
             <tr>
-              <th></th>
-              <th>タイトル</th>
-              <th>概要</th>
+              <td></td>
+              <td><%= link_to recipe.title,recipe, class: "recipe_#{recipe.id}" %></td>
+              <td><%= recipe.body %></td>
             </tr>
-          </thead>
-          <tbody>
-            <% @recipes.each do |recipe| %>
-              <tr>
-                <td></td>
-                <td><%= link_to recipe.title,recipe, class: "recipe_#{recipe.id}" %></td>
-                <td><%= recipe.body %></td>
-              </tr>
-            <% end %>
-          </tbody>
-        <% end %>
+          <% end %>
+        </tbody>
       </table>
     </div>
   </div>
