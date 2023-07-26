@@ -28,4 +28,8 @@
 - フレームワーク：Ruby on Rails
 - JSライブラリ：jQuery
 - IDE：Cloud9
-​
+
+## 管理者ログイン情報
+- /admin_signed_in
+- メールアドレス：admin@example.com
+- パスワード    ：password

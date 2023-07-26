@@ -15,6 +15,14 @@ class Public::RecipesController < ApplicationController
   end
 
   def edit
+    @recipe = Recipe.find(params[:id])
+  end
+
+  def update
+    recipe = Recipe.find(params[:id])
+    recipe.update(recipe_params)
+    flash[:notice] = "会員情報を変更しました。"
+    redirect_to recipe_path(recipe.id)
   end
 
   def create
@@ -23,17 +31,25 @@ class Public::RecipesController < ApplicationController
     if @recipe.save
       redirect_to recipe_path(@recipe), notice: "投稿完了"
     else
+      #byebug
       @recipes = Recipe.all
       render 'index'
     end
   end
-  
+
+  def destroy
+    recipe = Recipe.find(params[:id])
+    recipe.destroy
+    redirect_to user_path(current_user.id)
+  end
+
+
 
 
 
   private
   def recipe_params
-    params.permit(:title, :body, :instruction, :ingredient, :image, :comment)
+    params.require(:recipe).permit(:title, :body, :instruction, :ingredient, :image, :comment)
   end
 
 end

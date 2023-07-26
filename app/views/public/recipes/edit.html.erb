@@ -1,2 +1,37 @@
-<h1>Public::Recipes#edit</h1>
-<p>Find me in app/views/public/recipes/edit.html.erb</p>
+<div class="container">
+  <div class="row my-3">
+    <div class="col-sm-8 px-sm-0 offset-sm-1">
+    </div>
+  </div>
+  <%= form_with model: @recipe, url:recipe_path, method: :patch, local:true do |f| %>
+    <div class="row">
+      <table class="table-border:none">
+        <tr><th>料理画像</th></tr>
+        <tr>
+          <td><div class="form-group col-md-12"><%= f.file_field :image %></div></td>
+        </tr>
+        <tr>
+          <th>料理名</th>
+          <th>レシピ紹介文</th>
+        </tr>
+        <tr>
+          <td><div class="form-group col-md-6"><%= f.text_field :title, size:"30" %></div></td>
+          <td><div class="form-group col-md-6"><%= f.text_area :body, size:"50x2" %></div></td>
+        </tr>
+        <tr>
+          <th>材料</th>
+          <th>作り方</th>
+        </tr>
+        <tr>
+          <td><div class="form-group col-md-6"><%= f.text_area :ingredient, size:"30x4" %></div></td>
+          <td><div class="form-group col-md-6"><%= f.text_area :instruction, size:"50x4" %></div></td>
+        </tr>
+      </table>
+    </div>
+    <div class="row mb-2">
+      <div class="col-md-12">
+        <%= f.submit "変更を保存", class:"btn btn-success my-4" %>
+      </div>
+    </div>
+  <% end %>
+</div>
