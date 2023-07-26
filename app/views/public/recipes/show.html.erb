@@ -8,53 +8,64 @@
       <% end %>
     </div>
     <div class="col-md-6">
-          <h1><%= @recipe.title %></h1>
-          <% if user_signed_in? %>
-            <% if @recipe.favorited_by?(current_user) %>
-              <p>
-                <%= link_to recipe_favorites_path(@recipe), method: :delete do %>
-                  <i class="fa-solid fa-star" style="color: #ffc800;"></i> <%= @recipe.favorites.count %>
-                <% end %>
-              </p>
-            <% else %>
-              <p>
-                <%= link_to recipe_favorites_path(@recipe), method: :post do %>
-                  <i class="fa-regular fa-star" style="color: #ffc800;"></i> <%= @recipe.favorites.count %>
-                <% end %>
-              </p>
+      <h1><%= @recipe.title %></h1>
+      <% if user_signed_in? %>
+        <% if @recipe.favorited_by?(current_user) %>
+          <p>
+            <%= link_to recipe_favorites_path(@recipe), method: :delete do %>
+              <i class="fa-solid fa-star" style="color: #ffc800;"></i> <%= @recipe.favorites.count %>
             <% end %>
-          <% else %>
-              <p><i class="fa-solid fa-star" style="color: #ffc800;"> <%= @recipe.favorites.count %></p>
-          <% end %>
-          <p><i class="fa-solid fa-comment" style="color: #28cff0;"></i> <%= @recipe.recipe_comments.count %></p>
-          <p><%= link_to "編集", edit_recipe_path(@recipe.id), class:"btn btn-success" %></p>
-          <p><%= link_to "削除", recipe_path(@recipe.id), method: :delete,"data-confirm" => "本当に削除しますか？", class:"btn btn-danger" %></p>
-        <h3><%= @recipe.body %></h3>
-  </div>
-
-  <div class="row">
-    <div class="col">
-      <h2>材料</h2>
-      <%= @recipe.ingredient %>
+          </p>
+        <% else %>
+          <p>
+            <%= link_to recipe_favorites_path(@recipe), method: :post do %>
+              <i class="fa-regular fa-star" style="color: #ffc800;"></i> <%= @recipe.favorites.count %>
+            <% end %>
+          </p>
+        <% end %>
+      <% else %>
+          <p><i class="fa-solid fa-star" style="color: #ffc800;"> <%= @recipe.favorites.count %></p>
+      <% end %>
+      <p><i class="fa-solid fa-comment" style="color: #28cff0;"></i> <%= @recipe.recipe_comments.count %></p>
+      <p><%= link_to "編集", edit_recipe_path(@recipe.id), class:"btn btn-success" %></p>
+      <p><%= link_to "削除", recipe_path(@recipe.id), method: :delete,"data-confirm" => "本当に削除しますか？", class:"btn btn-danger" %></p>
+      <h3><%=safe_join(@recipe.body.split("\n"),tag(:br))%></h3>
     </div>
   </div>
-  <h2>みんなのコメント</h2>
+
   <div class="row">
+    <div class="col-md-8">
+      <h2 class="instruction mt-5">作り方</h2>
+      <%=safe_join(@recipe.instruction.split("\n"),tag(:br))%>
+    </div>
+    <div class="col-md-3 ml-auto">
+      <h2 class="ingredient mt-5">材料</h2>
+      <%=safe_join(@recipe.ingredient.split("\n"),tag(:br))%>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-8">
+      <h3 class="comments mt-5">みんなのコメント</h3>
     <% @recipe.recipe_comments.each do |recipe_comment| %>
-      <%= recipe_comment.user.name %>
-      <%= recipe_comment.created_at.strftime('%Y/%m/%d') %><%= recipe_comment.comment %>
-
-      <% if recipe_comment.user == current_user %>
-        <%= link_to "削除", recipe_recipe_comment_path(recipe_comment.recipe, recipe_comment), method: :delete %>
-      <% end %>
+      <p>
+        <i class="fa-solid fa-user" style="color: #28cff0;"></i> <strong><%= recipe_comment.user.name %>　</strong>
+        <% if recipe_comment.user == current_user %>
+          <%= link_to recipe_recipe_comment_path(recipe_comment.recipe, recipe_comment), method: :delete do %>
+            <i class="fa-solid fa-trash-can" style="color: #fb6060;"></i>
+          <% end %>
+        <% end %><br>
+        <%= recipe_comment.comment %>
+      </p>
     <% end %>
+    </div>
+    <div class="col-md-3 ml-auto">
+      <div class="comment-form mt-5">
+        <%= form_with model: [@recipe, @comment] do |f| %>
+          <%= f.text_area :comment, size:"30x5", placeholder: "コメントをここに" %><br>
+          <%= f.submit "投稿", class:"btn btn-success" %>
+        <% end %>
+      </div>
+    </div>
   </div>
-
-  <div class="row">
-    <%= form_with model: [@recipe, @comment] do |f| %>
-      <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
-      <%= f.submit "送信する" %>
-    <% end %>
-  </div>
-
 </div>

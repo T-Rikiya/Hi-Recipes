@@ -1,30 +1,25 @@
 <div class="container">
   <h1>みんなのレシピ</h1>
-  <div class="row">
-    <div class="col">
-
-    </div>
-  </div>
-  <div class="row">
+  <div class="row row-cols-5">
     <% @recipes.each do |recipe| %>
-      <table class="table">
-        <tr>
-          <td>
-            <% if recipe.image.attached? %>
-              <%= link_to recipe_path(recipe.id) do %>
-                <%= image_tag recipe.image, size: "100x100" %>
-              <% end %>
-            <% else %>
-              <%= link_to recipe_path(recipe.id) do %>
-                <%= image_tag 'no_image', size: "100x100" %>
+      <div class="col">
+        <div class="card border-white">
+          <div class="card-body mx-auto">
+            <%= link_to recipe_path(recipe.id) do %>
+              <% if recipe.image.attached? %>
+                <%= image_tag recipe.image, size: "150x150" %>
+              <% else %>
+                <%= image_tag 'no_image', size: "150x150" %>
               <% end %>
             <% end %>
-          </td>
-          <td><%= recipe.title %></td>
-          <td><%= recipe.body %></td>
-        </tr>
-      </table>
+          </div>
+          <div class="card-title text-center">
+              <%= recipe.title %>
+          </div>
+        </div>
+      </div>
     <% end %>
+    <%= paginate @recipes %>
   </div>
 </div>
 

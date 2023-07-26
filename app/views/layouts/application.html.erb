@@ -25,8 +25,8 @@
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            
-          
+
+
           <% if admin_signed_in? %>
             <h3 class="nav-item mr-3">管理者画面</h3>
             <ul class="navbar-nav mr-auto">
@@ -36,7 +36,7 @@
             <ul class="navbar-nav ml-auto">
               <div class="search_form">
                 <%= form_with url: admin_search_path, local: true, method: :get do |f| %>
-                  <%= f.text_field :word, placeholder: "ユーザー名を入力" %>
+                  <%= f.text_field :word, size:"30", placeholder: "ユーザー名を入力" %>
                   <%= f.submit "検索", class: "btn btn-primary" %>
                 <% end %>
               </div>
@@ -51,12 +51,12 @@
             <ul class="navbar-nav ml-auto">
               <div class="search_form">
                 <%= form_with url: search_path, local: true, method: :get do |f| %>
-                  <%= f.text_field :word, placeholder: "料理名・食材でレシピを検索" %>
+                  <%= f.text_field :word, size:"30", placeholder: "料理名・食材でレシピを検索" %>
                   <%= f.submit "検索", class: "btn btn-primary" %>
                 <% end %>
               </div>
             </ul>
-            
+
           <% else %>
             <ul class="navbar-nav mr-auto">
               <li class="nav-item mr-3"><%= link_to "新規登録", new_user_registration_path, class: "btn btn-outline-dark nav-link text-dark" %></li>
@@ -67,7 +67,7 @@
             <ul class="navbar-nav ml-auto">
               <div class="search_form">
                 <%= form_with url: search_path, local: true, method: :get do |f| %>
-                  <%= f.text_field :word, placeholder: "料理名・食材でレシピを検索" %>
+                  <%= f.text_field :word, size:"30", placeholder: "料理名・食材でレシピを検索" %>
                   <%= f.submit "検索", class: "btn btn-primary" %>
                 <% end %>
               </div>
