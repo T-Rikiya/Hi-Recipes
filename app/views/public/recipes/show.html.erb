@@ -4,32 +4,42 @@
       <% if @recipe.image.attached? %>
         <%= image_tag @recipe.image, :width => '100%' %>
       <% else %>
-        <%= image_tag 'no_image', size: "500x500" %>
+        <%= image_tag 'no_image', :width => '100%' %>
       <% end %>
     </div>
     <div class="col-md-6">
-      <h1><%= @recipe.title %></h1>
-      <% if user_signed_in? %>
-        <% if @recipe.favorited_by?(current_user) %>
-          <p>
-            <%= link_to recipe_favorites_path(@recipe), method: :delete do %>
-              <i class="fa-solid fa-star" style="color: #ffc800;"></i> <%= @recipe.favorites.count %>
-            <% end %>
-          </p>
-        <% else %>
-          <p>
-            <%= link_to recipe_favorites_path(@recipe), method: :post do %>
-              <i class="fa-regular fa-star" style="color: #ffc800;"></i> <%= @recipe.favorites.count %>
-            <% end %>
-          </p>
+      <div class="recipe-title">
+        <h1><%=safe_join(@recipe.title.split("\n"),tag(:br))%></h1>
+        <%= link_to user_path(@recipe.user.id) do %>
+          <p><i class="fa-solid fa-user" style="color: #3061b5;"></i> <%= @recipe.user.name %></p>
         <% end %>
-      <% else %>
-          <p><i class="fa-solid fa-star" style="color: #ffc800;"> <%= @recipe.favorites.count %></p>
-      <% end %>
-      <p><i class="fa-solid fa-comment" style="color: #28cff0;"></i> <%= @recipe.recipe_comments.count %></p>
-      <p><%= link_to "編集", edit_recipe_path(@recipe.id), class:"btn btn-success" %></p>
-      <p><%= link_to "削除", recipe_path(@recipe.id), method: :delete,"data-confirm" => "本当に削除しますか？", class:"btn btn-danger" %></p>
-      <h3><%=safe_join(@recipe.body.split("\n"),tag(:br))%></h3>
+      </div>
+        <h4 class="icon">
+          <% if user_signed_in? %>
+            <% if @recipe.favorited_by?(current_user) %>
+                <%= link_to recipe_favorites_path(@recipe), method: :delete do %>
+                  <i class="fa-solid fa-star" style="color: #ffc800;"> <%= @recipe.favorites.count %>　</i>
+                <% end %>
+            <% else %>
+                <%= link_to recipe_favorites_path(@recipe), method: :post do %>
+                  <i class="fa-regular fa-star" style="color: #ffc800;"> <%= @recipe.favorites.count %>　</i>
+                <% end %>
+            <% end %>
+          <% else %>
+                <i class="fa-solid fa-star" style="color: #ffc800;"> <%= @recipe.favorites.count %>　</i>
+          <% end %>
+          <i class="fa-solid fa-comment" style="color: #28cff0;"> <%= @recipe.recipe_comments.count %>　</i>
+          <% if @recipe.user == current_user %>
+            <%= link_to edit_recipe_path(@recipe.id) do %>
+              <i class="fa-solid fa-gear" style="color: #189a2e;"></i>
+            <% end %>
+            <%= link_to recipe_path(@recipe.id), method: :delete,"data-confirm" => "本当に削除しますか？" do %>
+              <i class="fa-solid fa-trash-can" style="color: #fb6060;"></i>
+            <% end %>
+          <% end %>
+        </h4>
+
+      <h4 class="recipe-body mt-5"><%=safe_join(@recipe.body.split("\n"),tag(:br))%></h4>
     </div>
   </div>
 

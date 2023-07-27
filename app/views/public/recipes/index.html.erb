@@ -1,25 +1,8 @@
 <div class="container">
   <h1>みんなのレシピ</h1>
-  <div class="row row-cols-5">
-    <% @recipes.each do |recipe| %>
-      <div class="col">
-        <div class="card border-white">
-          <div class="card-body mx-auto">
-            <%= link_to recipe_path(recipe.id) do %>
-              <% if recipe.image.attached? %>
-                <%= image_tag recipe.image, size: "150x150" %>
-              <% else %>
-                <%= image_tag 'no_image', size: "150x150" %>
-              <% end %>
-            <% end %>
-          </div>
-          <div class="card-title text-center">
-              <%= recipe.title %>
-          </div>
-        </div>
-      </div>
-    <% end %>
-    <%= paginate @recipes %>
-  </div>
+    <div class="row">
+      <%= render 'recipe_card', recipes: @recipes %>
+      <%= paginate @recipes %>
+    </div>
 </div>
 

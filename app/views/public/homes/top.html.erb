@@ -1,26 +1,6 @@
 <div class="container">
   <h1>ランダムレシピ</h1>
   <div class="row">
-    <div class="col">
-    <% @random.each do |recipe| %>
-      <table class="table">
-        <tr>
-          <td>
-            <% if recipe.image.attached? %>
-              <%= link_to recipe_path(recipe.id) do %>
-                <%= image_tag recipe.image, size: "100x100" %>
-              <% end %>
-            <% else %>
-              <%= link_to recipe_path(recipe.id) do %>
-                <%= image_tag 'no_image', size: "100x100" %>
-              <% end %>
-            <% end %>
-          </td>
-          <td><%= recipe.title %></td>
-          <td><%= recipe.body %></td>
-        </tr>
-      </table>
-    <% end %>
-    </div>
+    <%= render 'public/recipes/recipe_card', recipes: @recipes %>
   </div>
 </div>

@@ -1,97 +1,68 @@
 <div class="container">
+  <div class="user-info">
+    <% if @recipe.user == current_user %>
+    <div class="row">
+      <div class="col-md-6 ml-auto">
+        <h2>
+          <%= @user.name %>さんのユーザー情報
+          <% unless current_user.guest_user? %>
+            <%= link_to edit_user_path(@user.id) do %>
+               <i class="fa-solid fa-gear" style="color: #189a2e;"></i>
+            <% end %>
+          <% end %>
+        </h2>
+        <table class="table border border-2">
+          <tr>
+            <th>ユーザー名</th>
+            <td><%= @user.name %></td>
+          </tr>
+          <tr>
+            <th>メールアドレス</th>
+            <td><%= @user.email %></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <% else %>
+      
+    <% end %>
+  </div>
+
   <div class="row">
-    <div class="col text-center">
-      <h1>
-        <%=@user.name %>さんのユーザー情報
-        <% unless current_user.guest_user? %>
-          <%= link_to "編集する", edit_user_path(@user.id), class:"btn btn-success my-1 mx-4 px-4" %>
-        <% end %>
-      </h1>
+    <div class="col border-bottom text-center mt-5">
+      <h2>投稿レシピ</h2>
     </div>
   </div>
   <div class="row">
-    <div class="col">
-      <table class="table">
-        <tr>
-          <th>ユーザー名</th>
-          <td><%= @user.name %></td>
-        </tr>
-        <tr>
-          <th>メールアドレス</th>
-          <td><%= @user.email %></td>
-        </tr>
-      </table>
-    </div>
+    <%= render 'public/recipes/recipe_card', recipes: @recipes %>
+    <%= paginate @recipes %>
   </div>
   
   <div class="row">
-    <div class="col text-center">
-      <h2>投稿レシピ
-      <% unless current_user.guest_user? %>
-        <%= link_to "編集する", edit_recipe_path(@user.id), class:"btn btn-success my-1 mx-4 px-4" %>
-      <% end %>
-      </h2>
+    <div class="col border-bottom text-center mt-5">
+      <h2>お気に入りレシピ</h2>
     </div>
-
   </div>
   <div class="row">
-    
-    <div class="col">
-      <table class="table">
-        <theader>
-          <tr>
-            <th>画像</th>
-            <th>title</th>
-          </tr>
-        </theader>
-        <tbody>
-        <% @recipe.each do |recipe| %>
-          <tr>
-            <td>
+    <% @favorite_recipe.each do |recipe| %>
+      <div class="col">
+        <div class="card border-white">
+          <div class="card-body mx-auto">
+            <%= link_to recipe_path(recipe.id) do %>
               <% if recipe.image.attached? %>
-                <%= image_tag recipe.image, size: "200x200" %>
+                <%= image_tag recipe.image, size: "150x150" %>
               <% else %>
-                <%= image_tag 'no_image', size: "200x200" %>
+                <%= image_tag 'no_image', size: "150x150" %>
               <% end %>
-            </td>
-            <td><%= recipe.title %></td>
-          </tr>
-        <% end %>
-        </tbody>
-      </table>
-    </div>
+            <% end %>
+          </div>
+          <div class="card-title text-center">
+            <%= recipe.title %>
+          </div>
+        </div>
+      </div>
+    <% end %>
   </div>
-
-  <div class="row">
-    <h2>お気に入りレシピ</h2>
-    <div class="col">
-      <table class="table">
-        <theader>
-          <tr>
-            <th>画像</th>
-            <th>title</th>
-          </tr>
-        </theader>
-        <tbody>
-        <% @favorite_recipe.each do |recipe| %>
-          <tr>
-            <td>
-              <% if recipe.image.attached? %>
-                <%= link_to recipe_path(recipe.id) do %>
-                  <%= image_tag recipe.image, size: "200x200" %>
-                <% end %>
-              <% else %>
-                <%= link_to recipe_path(recipe.id) do %>
-                  <%= image_tag 'no_image', size: "200x200" %>
-                <% end %>
-              <% end %>
-            </td>
-            <td><%= recipe.title %></td>
-          </tr>
-        <% end %>
-        </tbody>
-      </table>
-    </div>
-  </div>
+</div>
 
 
