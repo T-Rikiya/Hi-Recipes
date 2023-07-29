@@ -31,9 +31,7 @@ before_action :authenticate_user!, except: [:top, :index, :show, :search]
     if @recipe.save
       redirect_to recipe_path(@recipe), notice: "投稿完了"
     else
-      #byebug
-      @recipes = Recipe.all
-      render 'index'
+      render 'new'
     end
   end
 
