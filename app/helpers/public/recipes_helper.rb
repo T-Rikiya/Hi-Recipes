@@ -2,9 +2,9 @@ module Public::RecipesHelper
 
   def ingredient_placeholder
     <<-"EOS".strip_heredoc
-    ・鶏もも肉 500g
-    ・小麦粉　大さじ3
-    ・揚げ油　適量
+    ・鶏もも肉：500g
+    ・小麦粉：大さじ3
+    ・揚げ油：適量
     ・
     ・
     EOS
