@@ -1,8 +1,13 @@
 <div class="container">
-  <h1><%=@user.name %>さんのユーザー情報</h1>
+  <h2>
+    <%=@user.name %> さんのユーザー情報
+    <%= link_to edit_admin_user_path(@user.id) do %>
+      <i class="fa-solid fa-gear" style="color: #189a2e;"></i>
+    <% end %>
+  </h2>
   <div class="row">
     <div class="col">
-      <table class="table">
+      <table class="table mt-3">
         <tr>
           <th>ユーザーID</th>
           <td><%= @user.id %></td>
@@ -28,22 +33,19 @@
       </table>
     </div>
   </div>
-  <div class="row mb-2">
-    <div class="col-lg-6 px-sm-0 offset-sm-1">
-      <%= link_to "編集する", edit_admin_user_path(@user.id), class:"btn btn-success my-1 mx-4 px-4" %>
-    </div>
-  </div>
-  <h1>コメント一覧</h1>
+  
+  <h2>コメント一覧</h2>
   <div class="row">
     <div class="col">
-      <table class="table">
-        <tr>
-          <th>コメント内容</th>
-        </tr>
+      <table class="table mt-3">
         <% @recipe_comments.each do |recipe_comment| %>
           <tr>
             <td><%= recipe_comment.comment %></td>
-            <td><%= link_to "削除", admin_user_recipe_comment_path(@user, recipe_comment), method: :delete %></td>
+            <td>
+              <%= link_to admin_user_recipe_comment_path(@user, recipe_comment), method: :delete do %>
+                <i class="fa-solid fa-trash-can" style="color: #fb6060;"> 削除</i>
+              <% end %>
+            </td>
           </tr>
         <% end %>
       </table>

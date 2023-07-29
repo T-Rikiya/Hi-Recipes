@@ -8,76 +8,16 @@
 
     <script src="https://kit.fontawesome.com/dd78c21fb3.js" crossorigin="anonymous"></script>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%#= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <header class="header bg-dark">
-      <nav class="navbar navbar-expand-lg navbar-dark bg-white">
-        <div class="container">
-          <a class="navbar-brand" href="/">
-            <%= link_to root_path do %>
-              <%= image_tag "logo.png", size: "150x150" %>
-            <% end %>
-          </a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNavDropdown">
-
-
-          <% if admin_signed_in? %>
-            <h3 class="nav-item mr-3">管理者画面</h3>
-            <ul class="navbar-nav mr-auto">
-              <li class="nav-item mr-3"><%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "btn btn-outline-dark nav-link text-dark" %></li>
-              <li class="nav-item mr-3"><%= link_to "ユーザー", admin_users_path, class: "btn btn-outline-dark nav-link text-dark" %></li>
-            </ul>
-            <ul class="navbar-nav ml-auto">
-              <div class="search_form">
-                <%= form_with url: admin_search_path, local: true, method: :get do |f| %>
-                  <%= f.text_field :word, size:"30", placeholder: "ユーザー名を入力" %>
-                  <%= f.submit "検索", class: "btn btn-primary" %>
-                <% end %>
-              </div>
-            </ul>
-          <% elsif user_signed_in? %>
-            <ul class="navbar-nav mr-auto">
-              <li class="nav-item mr-3"><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "btn btn-outline-dark nav-link text-dark" %></li>
-              <li class="nav-item mr-3"><%= link_to "マイページ" , user_path(current_user.id), class: "btn btn-outline-dark nav-link text-dark"%></li>
-              <li class="nav-item mr-3"><%= link_to "みんなのレシピ", recipes_path, class: "btn btn-outline-dark nav-link text-dark" %></li>
-              <li class="nav-item mr-3"><%= link_to "新規投稿", new_recipe_path, class: "btn btn-outline-dark nav-link text-dark" %></li>
-            </ul>
-            <ul class="navbar-nav ml-auto">
-              <div class="search_form">
-                <%= form_with url: search_path, local: true, method: :get do |f| %>
-                  <%= f.text_field :word, size:"30", placeholder: "料理名・食材でレシピを検索" %>
-                  <%= f.submit "検索", class: "btn btn-primary" %>
-                <% end %>
-              </div>
-            </ul>
-
-          <% else %>
-            <ul class="navbar-nav mr-auto">
-              <li class="nav-item mr-3"><%= link_to "新規登録", new_user_registration_path, class: "btn btn-outline-dark nav-link text-dark" %></li>
-              <li class="nav-item mr-3"><%= link_to "ログイン", new_user_session_path, class: "btn btn-outline-dark nav-link text-dark" %></li>
-              <li class="nav-item mr-3"><%= link_to 'ゲストログイン', users_guest_sign_in_path, method: :post, class: "btn btn-outline-dark nav-link text-dark" %></li>
-              <li class="nav-item mr-3"><%= link_to "みんなのレシピ", recipes_path, class: "btn btn-outline-dark nav-link text-dark" %></li>
-            </ul>
-            <ul class="navbar-nav ml-auto">
-              <div class="search_form">
-                <%= form_with url: search_path, local: true, method: :get do |f| %>
-                  <%= f.text_field :word, size:"30", placeholder: "料理名・食材でレシピを検索" %>
-                  <%= f.submit "検索", class: "btn btn-primary" %>
-                <% end %>
-              </div>
-            </ul>
-          <% end %>
-          </ul>
-          </div>
-        </div>
-      </nav>
-    </header>
-    <%= yield %>
+    <div class="content">
+      <%= render 'layouts/header' %>
+      <main>
+        <%= yield %>
+      </main>
+      <%= render 'layouts/footer' %>
+    </div>
   </body>
 </html>

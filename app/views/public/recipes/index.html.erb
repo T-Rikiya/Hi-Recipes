@@ -1,8 +1,12 @@
 <div class="container">
-  <h1>みんなのレシピ</h1>
+  <h2 class="h2">みんなのレシピ</h2>
     <div class="row">
       <%= render 'recipe_card', recipes: @recipes %>
-      <%= paginate @recipes %>
+    </div>
+    <div class="row">
+      <div class="col-md-2 offset-5">
+        <%= paginate @recipes %>
+      </div>
     </div>
 </div>
 

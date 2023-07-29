@@ -13,3 +13,21 @@
  *= require_tree .
  *= require_self
  */
+
+ main {
+   min-height: calc(100vh - 280px);
+ }
+
+footer {
+  height: 100px;
+  width: 100%;
+  text-align: center;
+}
+
+
+container {
+  font-family: Chalkduster, "Bradley Hand", Courier, "Segoe Print", sans-serif;
+}
+h2 {
+  font-family: Chalkduster, "Bradley Hand", Courier, "Segoe Print", sans-serif;
+}

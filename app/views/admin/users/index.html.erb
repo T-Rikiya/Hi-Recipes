@@ -1,28 +1,32 @@
 <div class="container">
-  <h1>ユーザー一覧</h1>
+  <h1>ユーザー 一覧</h1>
   <div class="row">
     <div class="col">
       <table class="table">
-        <tr>
-          <th>ユーザーID</th>
-          <th>ユーザーネーム </th>
-          <th>メールアドレス</th>
-          <th>会員ステータス</th>
-          <th></th>
-        </tr>
-        <% @users.each do |user| %>
+        <thead>
           <tr>
-            <td><%= user.id %></td>
-            <td><%= link_to user.name, admin_user_path(user.id) %></td>
-            <td><%= user.email %></td>
-            <td>
-              <% if user.is_active == true %>
-                <p class="text-success font-weight-bold">有効</p>
-              <% else %>
-                <p class="text-secondary">退会</p>
-              <% end %>
-            </td>
+            <th>ユーザーID</th>
+            <th>ユーザーネーム </th>
+            <th>メールアドレス</th>
+            <th>会員ステータス</th>
+            <th></th>
           </tr>
+        </thead>
+        <% @users.each do |user| %>
+          <tbody>
+            <tr>
+              <td><%= user.id %></td>
+              <td><%= link_to user.name, admin_user_path(user.id) %></td>
+              <td><%= user.email %></td>
+              <td>
+                <% if user.is_active == true %>
+                  <p class="text-success font-weight-bold">有効</p>
+                <% else %>
+                  <p class="text-secondary">退会</p>
+                <% end %>
+              </td>
+            </tr>
+          </tbody>
         <% end %>
       </table>
     </div>
