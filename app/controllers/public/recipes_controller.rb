@@ -6,7 +6,7 @@ before_action :authenticate_user!, except: [:top, :index, :show, :search]
   end
 
   def index
-    @recipes = Recipe.page(params[:page])
+    @recipes = Recipe.order("created_at desc").page(params[:page])
 
   end
 

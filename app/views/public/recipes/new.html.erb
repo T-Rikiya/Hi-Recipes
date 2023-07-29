@@ -20,16 +20,16 @@
           <th>レシピ紹介文</th>
         </tr>
         <tr>
-          <td><div class="form-group col-md-6"><%= f.text_field :title, size:"50" %></div></td>
-          <td><div class="form-group col-md-6"><%= f.text_area :body, size:"60x3" %></div></td>
+          <td><div class="form-group col-md-6"><%= f.text_field :title, size:"50", placeholder: "鶏の唐揚げ" %></div></td>
+          <td><div class="form-group col-md-6"><%= f.text_area :body, size:"60x3", cols:"40", rows:"5", placeholder: "鶏の唐揚げは、外はサクサク、中はジューシーで、一口食べると止まらなくなります。" %></div></td>
         </tr>
         <tr>
           <th>材料</th>
           <th>作り方</th>
         </tr>
         <tr>
-          <td><div class="form-group col-md-6"><%= f.text_area :ingredient, size:"50x10" %></div></td>
-          <td><div class="form-group col-md-6"><%= f.text_area :instruction, size:"60x10" %></div></td>
+          <td><div class="form-group col-md-6"><%= f.text_area :ingredient, size:"50x10", placeholder:ingredient_placeholder %></div></td>
+          <td><div class="form-group col-md-6"><%= f.text_area :instruction, size:"60x10", placeholder:instruction_placeholder  %></div></td>
         </tr>
       </table>
     </div>
