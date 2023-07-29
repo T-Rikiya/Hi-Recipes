@@ -35,7 +35,7 @@
     <%= render 'public/recipes/recipe_card', recipes: @recipes %>
     <%= paginate @recipes %>
   </div>
-  
+
   <div class="row">
     <div class="col border-bottom text-center mt-5">
       <h2>お気に入りレシピ</h2>
@@ -50,7 +50,7 @@
               <% if recipe.image.attached? %>
                 <%= image_tag recipe.image, size: "150x150" %>
               <% else %>
-                <%= image_tag 'no_image', size: "150x150" %>
+                <%= image_tag 'no_image.png', size: "150x150" %>
               <% end %>
             <% end %>
           </div>
