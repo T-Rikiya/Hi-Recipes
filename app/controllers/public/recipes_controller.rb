@@ -1,4 +1,5 @@
 class Public::RecipesController < ApplicationController
+before_action :authenticate_user!, except: [:top, :index, :show, :search]
 
   def new
     @recipe = Recipe.new

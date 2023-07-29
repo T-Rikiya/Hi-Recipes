@@ -13,23 +13,3 @@
  *= require_tree .
  *= require_self
  */
-header {
-  font-family: 筑紫A丸ゴシック;
-}
-
- main {
-   min-height: calc(100vh - 280px);
-   font-family: 筑紫A丸ゴシック;
- }
-
-footer {
-  height: 100px;
-  width: 100%;
-  text-align: center;
-  font-family: 筑紫A丸ゴシック;
-}
-
-img {
-  border-radius: 10px;
-}
-
