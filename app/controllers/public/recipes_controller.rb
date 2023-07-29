@@ -21,7 +21,6 @@ class Public::RecipesController < ApplicationController
   def update
     recipe = Recipe.find(params[:id])
     recipe.update(recipe_params)
-    flash[:notice] = "会員情報を変更しました。"
     redirect_to recipe_path(recipe.id)
   end
 

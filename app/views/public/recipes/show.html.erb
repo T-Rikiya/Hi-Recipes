@@ -73,7 +73,7 @@
       <div class="comment-form mt-5">
         <%= form_with model: [@recipe, @comment] do |f| %>
           <%= f.text_area :comment, size:"30x5", placeholder: "コメントをここに" %><br>
-          <%= f.submit "投稿", class:"btn btn-success" %>
+          <%= f.submit "投稿", class:"btn btn-success mb-3" %>
         <% end %>
       </div>
     </div>
