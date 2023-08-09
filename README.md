@@ -20,6 +20,7 @@
 ## 設計書
 - [テーブル定義書](https://docs.google.com/spreadsheets/d/1XEzuFYDNyRjhDYlss77wYImhL30wf2JDhgxISuxAygA/edit#gid=1575826260)
 - [アプリケーション詳細設計書](https://docs.google.com/spreadsheets/d/1ky30CmTZyk1V2wyETU-rsm9PrZeedAGXhrV5JqxBjFc/edit#gid=1847888043)
+- [WBS](https://docs.google.com/spreadsheets/d/1vBznwzSR9w3FhxB6F3cXL0-m0JId9lFPqc6VFlzs1oI/edit#gid=17735136003)
 
 ## 実装機能
 ### 管理者側（Admin）
