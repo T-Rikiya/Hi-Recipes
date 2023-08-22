@@ -16,7 +16,7 @@
 ### 主な利用シーン
 - なんの料理を作ろうか考える時
 - 買い物で買うものを考える時
-- 自分の作ったものを記しておきたいとき
+- 自分の作ったものを記しておきたい時
 
 ## 設計書
 - [テーブル定義書](https://docs.google.com/spreadsheets/d/1XEzuFYDNyRjhDYlss77wYImhL30wf2JDhgxISuxAygA/edit#gid=1575826260)
